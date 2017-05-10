@@ -1,4 +1,3 @@
- // initializing variables
 let fs = require('fs');
 let country = ['Netherlands', 'Canada', 'United Kingdom',
 'United States', 'Australia', 'France', 'Germany', 'Spain', 'South Africa'];
@@ -11,6 +10,7 @@ let countryv = 0;
 let sugar = 0;
 let salt = 0;
 let i = 0;
+
 let log4js = require('log4js');
 let logger = log4js.getLogger();
 const sugarv = Array(9).fill(0);
@@ -31,6 +31,23 @@ module.exports = function convert(startYear)
     input: fs.createReadStream('../inputdata/FoodFacts.csv')
   });
 /* splitting the header by comma */
+
+const sugarv = Array(9).fill(0);
+const saltv = Array(9).fill(0);
+module.exports = function convert(startYear)
+{
+  if(typeof startYear === 'string')
+  {
+    return;
+  }
+  if(typeof startYear !== 'number' || isNaN(startYear))
+ {
+       throw new Error('Not a number');
+ }
+const ln = require('readline').createInterface({
+ input: fs.createReadStream('../inputdata/FoodFacts.csv')
+});
+>>>>>>> 748a2e61a7cf2791df4aa6f566b56b355aa35380
 ln.on('line', function (line) {
 data = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
 while(i < 1)
@@ -62,6 +79,7 @@ ln.on('close', function() {
    Sugar: sugarv[h],
    Salt: saltv[h]
 });}
+
   /* writing the output into json file */
   logger.debug(final);
 fs.writeFile('foodFactsSripriya.json', JSON.stringify(final));
